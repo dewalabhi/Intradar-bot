@@ -1,0 +1,39 @@
+# Price Action Trading Bot
+trading:
+  mode: paper
+  initial_cash: 100000
+  symbols:
+    - AAPL
+    - MSFT
+    - TSLA
+  max_positions: 3
+  risk_per_trade: 0.02
+
+data:
+  provider: yfinance
+  timeframe: 5m
+  history_days: 10
+
+strategies:
+  ma_crossover:
+    enabled: false
+    fast_period: 10
+    slow_period: 30
+    ma_type: EMA
+    
+  rsi_mean_reversion:
+    enabled: false
+    rsi_period: 14
+    oversold: 30
+    overbought: 70
+    
+  price_action_breakout:
+    enabled: true
+    lookback_bars: 20
+    volume_threshold: 1.5
+    breakout_buffer: 0.1
+    min_range_pct: 0.3
+
+logging:
+  level: INFO
+  file: data/logs/trading_bot.log
