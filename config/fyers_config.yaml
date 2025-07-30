@@ -1,0 +1,62 @@
+fyers:
+  api:
+    base_url: https://api.fyers.in/api/v3
+    token_url: https://api.fyers.in/api/v3/token
+  api_status: UNAVAILABLE
+  app_id: RQDJ4HBQEN-100
+  auth:
+    retry_attempts: 3
+    timeout_seconds: 30
+    token_expiry_hours: 24
+  last_checked: '2025-07-20T16:19:34.674853'
+  logging:
+    log_api_calls: true
+    log_orders: true
+    log_responses: false
+  market_data:
+    cache_duration_seconds: 5
+    rate_limit_per_second: 10
+    symbol_format: NSE:{symbol}-EQ
+  mock_mode: true
+  orders:
+    default_disclosed_qty: 0
+    default_product_type: INTRADAY
+    default_validity: DAY
+    max_order_qty: 10000
+    max_order_value: 50000
+    min_order_qty: 1
+  paper_trading: true
+  portfolio:
+    auto_square_off: true
+    calculate_charges: true
+    include_brokerage: true
+    square_off_time: '15:20'
+    track_pnl: true
+  redirect_uri: http://127.0.0.1:8000
+  risk:
+    default_stop_loss_pct: 1.0
+    max_daily_loss: 5000
+    max_daily_trades: 50
+    max_stop_loss_pct: 3.0
+    position_limit: 200000
+  secret_key: 1UHBSCQQRR
+integration:
+  override_symbols: true
+  symbol_mapping:
+    BHARTIARTL.NS: NSE:BHARTIARTL-EQ
+    HDFCBANK.NS: NSE:HDFCBANK-EQ
+    HINDUNILVR.NS: NSE:HINDUNILVR-EQ
+    ICICIBANK.NS: NSE:ICICIBANK-EQ
+    INFY.NS: NSE:INFY-EQ
+    ITC.NS: NSE:ITC-EQ
+    KOTAKBANK.NS: NSE:KOTAKBANK-EQ
+    RELIANCE.NS: NSE:RELIANCE-EQ
+    SBIN.NS: NSE:SBIN-EQ
+    TCS.NS: NSE:TCS-EQ
+paper_trading_config:
+  fyers_paper:
+    commission_per_trade: 20
+    starting_capital: 100000
+    stt_rate: 0.001
+    transaction_charges: 0.0035
+  use_paper_config: true

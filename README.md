@@ -1,6 +1,6 @@
-# 🤖 Professional Trading Bot
+# 🎯 Nifty 50 Intraday Trading Bot
 
-A comprehensive Python trading bot with multiple strategies, risk management, and professional-grade backtesting.
+A specialized Python trading bot optimized exclusively for **Nifty 50 stocks** with advanced intraday strategies, Indian market timing, and sector-wise optimization.
 
 ## 🚀 Quick Start
 
@@ -9,37 +9,45 @@ A comprehensive Python trading bot with multiple strategies, risk management, an
    pip install -r requirements.txt
    ```
 
-2. **Run a backtest:**
+2. **Run Nifty 50 strategy test:**
    ```bash
-   python src/main.py --mode backtest
+   python test_nifty50_strategy.py
    ```
 
-3. **Test with specific symbols:**
+3. **Live trading setup:**
    ```bash
-   python src/main.py --mode backtest --symbols AAPL MSFT GOOGL
+   python src/main.py --mode live --market indian --focus nifty50
    ```
 
-## 📊 Strategies Included
+## 📊 Strategy: Balanced Breakout (Nifty 50 Optimized)
 
-- **Moving Average Crossover**: Classic trend-following strategy
-- **RSI Mean Reversion**: Contrarian approach for range-bound markets
+- **🎯 Focus**: Top 50 most liquid Indian stocks only
+- **⏰ Timeframe**: 1-minute intraday scalping  
+- **💰 Position Size**: Standardized ₹50,000 per trade
+- **📊 Liquidity**: Optimized for high-volume Nifty 50 characteristics
+- **🏛️ Market**: NSE (National Stock Exchange) with IST timing
 
-## ⚙️ Configuration
+## ⚙️ Nifty 50 Configuration
 
-Edit `config/config.yaml` to customize:
-- Trading symbols
-- Strategy parameters
-- Risk management settings
-- Initial capital
+The strategy is pre-configured for optimal Nifty 50 trading:
+- **Trading Window**: 9:30 AM - 3:00 PM IST
+- **Volume Threshold**: 0.8x (high liquidity adjustment)
+- **Stop Loss**: 0.9x multiplier (tighter stops)
+- **Sectors**: IT, Banking, Energy, Auto, FMCG optimization
+- **Circuit Risk**: Minimal for top 50 stocks
 
-## 📈 Features
+## 📈 Nifty 50 Advantages
 
-- Multiple trading strategies
-- Professional backtesting with Backtrader
-- Comprehensive performance analytics
-- Risk management and position sizing
-- Real-time data via Yahoo Finance
-- Detailed logging and reporting
+- ✅ **Highest Liquidity**: Easy entry/exit, tight spreads
+- ✅ **Lower Impact Cost**: Minimal slippage on trades  
+- ✅ **Predictable Patterns**: Strong institutional following
+- ✅ **Sector Diversification**: Balanced across sectors
+- ✅ **Circuit Risk Minimal**: Top 50 stocks rarely hit limits
+- ✅ **News Coverage**: Best information flow for analysis
+
+## 🎯 Supported Nifty 50 Stocks
+
+RELIANCE, TCS, HDFCBANK, BHARTIARTL, ICICIBANK, SBIN, ITC, HINDUNILVR, LT, HCLTECH, MARUTI, SUNPHARMA, INFY, WIPRO, and 36 more...
 
 ## 📋 Requirements
 

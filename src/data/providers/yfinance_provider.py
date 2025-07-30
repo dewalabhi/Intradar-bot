@@ -76,9 +76,12 @@ class YFinanceProvider:
         """
         
         original_length = len(data)
+        print(f"[DEBUG] {symbol} raw data: {original_length} rows")
         
         # Remove rows with any NaN values
         data = data.dropna()
+        after_nan = len(data)
+        print(f"[DEBUG] {symbol} after dropna: {after_nan} rows (removed {original_length - after_nan})")
         
         # Remove rows where OHLC values are invalid
         data = data[
@@ -88,6 +91,8 @@ class YFinanceProvider:
             (data['Close'] > 0) &
             (data['Volume'] >= 0)
         ]
+        after_ohlcv = len(data)
+        print(f"[DEBUG] {symbol} after OHLCV filter: {after_ohlcv} rows (removed {after_nan - after_ohlcv})")
         
         # Ensure High >= Low, High >= Open, High >= Close, Low <= Open, Low <= Close
         data = data[
@@ -97,15 +102,26 @@ class YFinanceProvider:
             (data['Low'] <= data['Open']) &
             (data['Low'] <= data['Close'])
         ]
+        after_sanity = len(data)
+        print(f"[DEBUG] {symbol} after sanity checks: {after_sanity} rows (removed {after_ohlcv - after_sanity})")
         
         # Remove extreme outliers (price changes > 50% in one bar)
         data['price_change'] = data['Close'].pct_change()
         data = data[abs(data['price_change']) <= 0.5]
         data = data.drop('price_change', axis=1)
+        after_outliers = len(data)
+        print(f"[DEBUG] {symbol} after outlier filter: {after_outliers} rows (removed {after_sanity - after_outliers})")
         
-        # Filter trading hours (9:30 AM - 4:00 PM EST)
+        # Only filter trading hours for intraday intervals
         if not data.empty:
-            data = self._filter_trading_hours(data)
+            # Use the index frequency to guess interval type
+            freq = pd.infer_freq(data.index)
+            # If interval is not daily, apply trading hours filter
+            if freq and not freq.endswith('D'):
+                before_hours = len(data)
+                data = self._filter_trading_hours(data)
+                after_hours = len(data)
+                print(f"[DEBUG] {symbol} after trading hours filter: {after_hours} rows (removed {before_hours - after_hours})")
         
         cleaned_length = len(data)
         removed_bars = original_length - cleaned_length
